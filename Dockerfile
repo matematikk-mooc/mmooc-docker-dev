@@ -10,13 +10,12 @@ RUN cd /opt/canvas-lms && git fetch --unshallow
 
 ### Emacs
 # prelude:
-RUN bash -c "curl -L http://git.io/epre | sh"
+RUN bash -c "curl -L http://git.io/epre | sh" && emacs --script /root/.emacs.d/init.el
+
 
 ### Tmux
 ADD tmux.conf /root/.tmux.conf
 
-ENV TERM xterm-256color
-
 EXPOSE 3000
 
-CMD "/bin/bash -c /usr/bin/tmux -2"
+CMD /usr/bin/tmux -2
